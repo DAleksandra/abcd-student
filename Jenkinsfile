@@ -14,7 +14,9 @@ pipeline {
         }
         stage('[ZAP] Baseline passive-scan') {
             steps {
-                
+                sh '''
+                        docker stop zap juice-shop || true
+                    '''
             }
             post {
                 always {

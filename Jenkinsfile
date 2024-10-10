@@ -26,7 +26,7 @@ pipeline {
                 sh '''
                     docker run --name zap --rm -td\
                     --add-host=host.docker.internal:host-gateway \
-                    -v /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/passiveScan/passive_scan.yaml:/zap/wrk/:rw \
+                    -v /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/passiveScan:/zap/wrk/:rw \
                      -t ghcr.io/zaproxy/zaproxy:stable bash 
                 '''
             }

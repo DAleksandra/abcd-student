@@ -29,7 +29,7 @@ pipeline {
                         --add-host=host.docker.internal:host-gateway \
                         -v /var/jenkins_home/workspace/DevSecOps/abcd-student/.zap/passive_scan.yaml:/home/zap/wrk:rw \
                         -t ghcr.io/zaproxy/zaproxy:stable bash -c \
-                        "ls /home/zap/wrk/passive_scan.yaml" 
+                        "ls /home/zap/wrk" 
                 '''
             }
             post {

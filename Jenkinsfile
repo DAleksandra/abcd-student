@@ -17,10 +17,16 @@ pipeline {
                 sh '''
                         docker stop zap juice-shop || true
                     '''
+                  sh '''
+                    docker run --name juice-shop -d --rm \\
+                        -p 3000:3000 \\
+                        bkimminich/juice-shop
+                    sleep 5
+                '''
                 sh '''
                     docker run --name zap --rm -td \
                     --add-host=host.docker.internal:host-gateway \
-                    -v /var/jenkins_home/workspace/DevSecOps/passiveScan/passive_scan.yaml:/zap/wrk:rw \
+                    -v /var/jenkins_home/workspace/DevSecOps/passiveScan/passive_scan.yaml:/zap/wrk/passive_scan.yaml:rw \
                     -t ghcr.io/zaproxy/zaproxy:stable bash 
                 '''
             }

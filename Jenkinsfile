@@ -24,7 +24,7 @@ pipeline {
                     sleep 5
                 '''
                 sh '''
-                    cat /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/.zap/passive_scan.yaml
+                    pwd
                     docker run --name zap --rm \
                         --add-host=host.docker.internal:host-gateway \
                         -v /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/.zap/passive_scan.yaml:/zap/wrk:rw \

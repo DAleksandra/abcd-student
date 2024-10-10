@@ -15,6 +15,9 @@ pipeline {
         stage('[ZAP] Baseline passive-scan') {
             steps {
                 sh '''
+                        docker stop zap juice-shop
+                    '''
+                sh '''
                     docker run --name juice-shop -d --rm \\
                         -p 3000:3000 \\
                         bkimminich/juice-shop

@@ -27,9 +27,9 @@ pipeline {
                     pwd
                     docker run --name zap --rm \
                         --add-host=host.docker.internal:host-gateway \
-                        -v /var/jenkins_home/workspace/DevSecOps/abcd-student/.zap/passive_scan.yaml:/zap/wrk:rw \
+                        -v /var/jenkins_home/workspace/DevSecOps/abcd-student/.zap:/zap/wrk:rw \
                         -t ghcr.io/zaproxy/zaproxy:stable bash -c \
-                        "zap.sh -cmd ls /zap/wrk; zap.sh -cmd -addoninstall communityScripts -addoninstall pscanrulesAlpha -addoninstall pscanrulesBeta -autorun /zap/wrk/passive_scan.yaml"
+                        "zap.sh -cmd -addonupdate; zap.sh -cmd -addoninstall communityScripts -addoninstall pscanrulesAlpha -addoninstall pscanrulesBeta"
                 '''
             }
             post {
@@ -37,7 +37,6 @@ pipeline {
                     sh '''
                         docker cp zap:/zap/wrk/zap_html_report.html ${WORKSPACE}/results/zap_html_report.html
                         docker cp zap:/zap/wrk/zap_xml_report.xml ${WORKSPACE}/results/zap_xml_report.xml
-                        docker stop zap juice-shop
                     '''
                 }
             }

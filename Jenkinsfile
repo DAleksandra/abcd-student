@@ -28,8 +28,9 @@ pipeline {
                     cat /var/jenkins_home/workspace/DevSecOps/passiveScan/passive_scan.yaml
                     docker run --name zap --rm -td \
                     --add-host=host.docker.internal:host-gateway \
-                    -v /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/passiveScan/passive_scan.yaml:/zap/wrk/passive_scan.yaml \
-                    -t ghcr.io/zaproxy/zaproxy:stable bash 
+                    -v /mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/passiveScan/passive_scan.yaml:/zap/wrk/passive_scan.yaml:rw \
+                    -t ghcr.io/zaproxy/zaproxy:stable bash \
+                     "zap.sh -cmd -addonupdate; zap.sh -cmd -addoninstall communityScripts -addoninstall pscanrulesAlpha -addoninstall pscanrulesBeta -autorun /zap/wrk/passive_scan.yaml" 
                 '''
             }
             post {

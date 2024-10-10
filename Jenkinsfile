@@ -28,7 +28,7 @@ pipeline {
                     ls /var/jenkins_home/workspace/DevSecOps/passiveScan
                     docker run --name zap --rm -td \
                     --add-host=host.docker.internal:host-gateway \
-                    -v /var/jenkins_home/workspace/DevSecOps/passiveScan/passive_scan.yaml:/zap/wrk:rw \
+                    -v /var/jenkins_home/workspace/DevSecOps/passiveScan:/zap/wrk:rw \
                     -t ghcr.io/zaproxy/zaproxy:stable bash 
                 '''
             }

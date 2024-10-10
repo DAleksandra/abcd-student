@@ -24,6 +24,8 @@ pipeline {
                     sleep 5
                 '''
                 sh '''
+                    pwd
+                    ls /var/jenkins_home/workspace/DevSecOps/passiveScan
                     docker run --name zap --rm -td \
                     --add-host=host.docker.internal:host-gateway \
                     -v /var/jenkins_home/workspace/DevSecOps/passiveScan/passive_scan.yaml:/zap/wrk/passive_scan.yaml:rw \

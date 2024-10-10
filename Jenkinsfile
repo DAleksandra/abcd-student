@@ -21,7 +21,7 @@ pipeline {
             post {
                 always {
                     defectDojoPublisher(
-                        artifact: '/mnt/c/Users/duraa/Desktop/DevSecOps/abcd-student/results/zap_xml_report.xml',
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',
                         productName: 'Juice Shop',
                         scanType: 'ZAP Scan',
                         engagementName: 'aleksandra.dura@hitachienergy.com'

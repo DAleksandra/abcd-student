@@ -19,6 +19,7 @@ pipeline {
                     '''
                 sh '''
                     pwd
+                    ls /var/jenkins_home/workspace/DevSecOps/abcd-student/.zap
                     docker run --name zap --rm \
                         --add-host=host.docker.internal:host-gateway \
                         -v /var/jenkins_home/workspace/DevSecOps/abcd-student/.zap/passive_scan.yaml:/home/zap/wrk:rw \

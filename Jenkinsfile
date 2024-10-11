@@ -34,7 +34,7 @@ pipeline {
             post {
                 always {
                     sh '''
-                        docker cp zap:/zap/wrk/reports/zap_html_reports/zap_xml_report.xml #{WORKSPACE}/results/zap_xml_report.xml
+                        docker cp zap:/zap/wrk/reports/zap_html_reports/zap_xml_report.xml ${WORKSPACE}/results/zap_xml_report.xml
                     '''
                     defectDojoPublisher(
                         artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',

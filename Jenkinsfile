@@ -27,7 +27,7 @@ pipeline {
                     osv-scanner scan --lockfile package-lock.json
                 '''
             }
-            post {
+          //  post {
                // always {
                    // defectDojoPublisher(
                      //   artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',
@@ -36,7 +36,7 @@ pipeline {
                      //   engagementName: 'aleksandra.dura@hitachienergy.com'
                    // )
               //  }
-            }
+          //  }
         }
     }
 }

@@ -23,7 +23,7 @@ pipeline {
                     defectDojoPublisher(
                         artifact: '/var/jenkins_home/workspace/DevSecOps/results/sca-osv-scanner.json',
                         productName: 'Juice Shop',
-                        scanType: 'OSV',
+                        scanType: 'OSV Scan', 
                         engagementName: 'aleksandra.dura@hitachienergy.com'
                     )
                 }

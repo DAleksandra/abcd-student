@@ -28,14 +28,14 @@ pipeline {
                 '''
             }
             post {
-                always {
+               // always {
                    // defectDojoPublisher(
                      //   artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',
                      //   productName: 'Juice Shop',
                      //   scanType: 'ZAP Scan',
                      //   engagementName: 'aleksandra.dura@hitachienergy.com'
                    // )
-                }
+              //  }
             }
         }
     }

@@ -15,19 +15,19 @@ pipeline {
         stage('OSV Scan') {
             steps {
                 sh '''
-                    osv-scanner -L package-lock.json --output scan-results.txt
+                    sh 'osv-scanner scan --lockfile package-lock.json --format json --output results/sca-osv-scanner.json
                 '''
             }
-            post {
-                always {
-                    defectDojoPublisher(
-                        artifact: '/var/jenkins_home/workspace/DevSecOps/scan-results.txt',
-                        productName: 'Juice Shop',
-                        scanType: 'OSV',
-                          engagementName: 'aleksandra.dura@hitachienergy.com'
-                    )
-                }
-            }
+         //   post {
+         //       always {
+            //        defectDojoPublisher(
+             //           artifact: '/var/jenkins_home/workspace/DevSecOps/scan-results.txt',
+            //            productName: 'Juice Shop',
+              //          scanType: 'OSV',
+              //            engagementName: 'aleksandra.dura@hitachienergy.com'
+               //     )
+            //    }
+           // }
         }
     }
 }

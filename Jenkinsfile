@@ -12,22 +12,22 @@ pipeline {
                 }
             }
         }
-        stage('[ZAP] Baseline passive-scan') {
+        stage('OSV Scan') {
             steps {
                 sh '''
                     osv-scanner -L package-lock.json --output scan-results.txt
                 '''
             }
-          //  post {
-               // always {
-                   // defectDojoPublisher(
-                     //   artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',
-                     //   productName: 'Juice Shop',
-                     //   scanType: 'OSV-Scanner',
-                 //         engagementName: 'aleksandra.dura@hitachienergy.com'
-                 //   )
-             //   }
-           // }
+            post {
+                always {
+                    defectDojoPublisher(
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/scan-results.txt',
+                        productName: 'Juice Shop',
+                        scanType: 'OSV-Scanner',
+                          engagementName: 'aleksandra.dura@hitachienergy.com'
+                    )
+                }
+            }
         }
     }
 }

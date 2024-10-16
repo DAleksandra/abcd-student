@@ -15,7 +15,7 @@ pipeline {
         stage('[ZAP] Baseline passive-scan') {
             steps {
                 sh '''
-                    osv-scanner scan --lockfile package-lock.json --output scan-results.txt
+                    osv-scanner scan --lockfile package-lock.json
                 '''
             }
           //  post {

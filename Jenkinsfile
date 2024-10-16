@@ -15,16 +15,7 @@ pipeline {
         stage('[ZAP] Baseline passive-scan') {
             steps {
                 sh '''
-                        docker stop juice-shop || true
-                    '''
-                  sh '''
-                    docker run --name juice-shop -d --rm \\
-                        -p 3000:3000 \\
-                        bkimminich/juice-shop
-                    sleep 5
-                '''
-                sh '''
-                    osv-scanner scan --lockfile package-lock.json
+                    osv-scanner scan --lockfile package-lock.json --output scan-results.txt
                 '''
             }
           //  post {
@@ -32,11 +23,11 @@ pipeline {
                    // defectDojoPublisher(
                      //   artifact: '/var/jenkins_home/workspace/DevSecOps/results/zap_xml_report.xml',
                      //   productName: 'Juice Shop',
-                     //   scanType: 'ZAP Scan',
-                     //   engagementName: 'aleksandra.dura@hitachienergy.com'
-                   // )
-              //  }
-          //  }
+                     //   scanType: 'OSV-Scanner',
+                 //         engagementName: 'aleksandra.dura@hitachienergy.com'
+                 //   )
+             //   }
+           // }
         }
     }
 }

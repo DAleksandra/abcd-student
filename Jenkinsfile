@@ -18,16 +18,16 @@ pipeline {
                     trufflehog filesystem --directory ./ --json > results/trufflehog.json
                 '''
             }
-           // post {
-              //  always {
-          //          defectDojoPublisher(
-          //              artifact: '/var/jenkins_home/workspace/DevSecOps/results/trufflehog.json',
-          //              productName: 'Juice Shop',
-            //            scanType: 'Trufflehog Scan', 
-          //              engagementName: 'aleksandra.dura@hitachienergy.com'
-             //       )
-           //     }
-           // }
+            post {
+                always {
+                    defectDojoPublisher(
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/results/trufflehog.json',
+                        productName: 'Juice Shop',
+                        scanType: 'Trufflehog Scan', 
+                        engagementName: 'aleksandra.dura@hitachienergy.com'
+                    )
+                }
+            }
         }
     }
 }

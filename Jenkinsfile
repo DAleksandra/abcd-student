@@ -15,7 +15,7 @@ pipeline {
         stage('OSV Scan') {
             steps {
                 sh '''
-                    trufflehog git --branch main ./ --json > results/trufflehog.json
+                    trufflehog filesystem --directory ./ --json > results/trufflehog.json
                 '''
             }
            // post {

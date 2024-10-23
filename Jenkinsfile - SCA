@@ -15,19 +15,19 @@ pipeline {
         stage('OSV Scan') {
             steps {
                 sh '''
-                    trufflehog git --branch main ./ --output results/trufflehog.json
+                    osv-scanner scan --lockfile package-lock.json --format json --output results/sca-osv-scanner.json
                 '''
             }
-           // post {
-              //  always {
-          //          defectDojoPublisher(
-          //              artifact: '/var/jenkins_home/workspace/DevSecOps/results/trufflehog.json',
-          //              productName: 'Juice Shop',
-            //            scanType: 'Trufflehog Scan', 
-          //              engagementName: 'aleksandra.dura@hitachienergy.com'
-             //       )
-           //     }
-           // }
+            post {
+                always {
+                    defectDojoPublisher(
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/results/sca-osv-scanner.json',
+                        productName: 'Juice Shop',
+                        scanType: 'OSV Scan', 
+                        engagementName: 'aleksandra.dura@hitachienergy.com'
+                    )
+                }
+            }
         }
     }
 }

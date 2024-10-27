@@ -24,7 +24,7 @@ pipeline {
                     defectDojoPublisher(
                         artifact: '/var/jenkins_home/workspace/DevSecOps/results/semgrep.json',
                         productName: 'Juice Shop',
-                        scanType: 'Semgrep Scan', 
+                        scanType: 'semgrep Scan', 
                         engagementName: 'aleksandra.dura@hitachienergy.com'
                     )
                 }

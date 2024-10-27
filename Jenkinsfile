@@ -19,16 +19,16 @@ pipeline {
                     semgrep scan --config auto --json > semgrep.json
                 '''
             }
-           // post {
-             //   always {
-               //     defectDojoPublisher(
-               //         artifact: '/var/jenkins_home/workspace/DevSecOps/results/semgrep.json',
-               //         productName: 'Juice Shop',
-               //         scanType: 'Semgrep Scan', 
-               //         engagementName: 'aleksandra.dura@hitachienergy.com'
-              //      )
-             //   }
-           // }
+            post {
+                always {
+                    defectDojoPublisher(
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/results/semgrep.json',
+                        productName: 'Juice Shop',
+                        scanType: 'Semgrep Scan', 
+                        engagementName: 'aleksandra.dura@hitachienergy.com'
+                    )
+                }
+            }
         }
     }
 }

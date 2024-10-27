@@ -15,7 +15,8 @@ pipeline {
         stage('SAST Scan') {
             steps {
                 sh '''
-                    semgrep scan --config auto --branch main --json > semgrep.json
+                    git checkout main
+                    semgrep scan --config auto --json > semgrep.json
                 '''
             }
            // post {

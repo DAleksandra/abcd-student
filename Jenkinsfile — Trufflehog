@@ -12,22 +12,22 @@ pipeline {
                 }
             }
         }
-        stage('SAST Scan') {
+        stage('OSV Scan') {
             steps {
                 sh '''
-                    semgrep scan --config auto --branch main --json > semgrep.json
+                    trufflehog filesystem --directory ./ --json > results/trufflehog.json
                 '''
             }
-           // post {
-             //   always {
-               //     defectDojoPublisher(
-               //         artifact: '/var/jenkins_home/workspace/DevSecOps/results/semgrep.json',
-               //         productName: 'Juice Shop',
-               //         scanType: 'Semgrep Scan', 
-               //         engagementName: 'aleksandra.dura@hitachienergy.com'
-              //      )
-             //   }
-           // }
+            post {
+                always {
+                    defectDojoPublisher(
+                        artifact: '/var/jenkins_home/workspace/DevSecOps/results/trufflehog.json',
+                        productName: 'Juice Shop',
+                        scanType: 'Trufflehog Scan', 
+                        engagementName: 'aleksandra.dura@hitachienergy.com'
+                    )
+                }
+            }
         }
     }
 }
